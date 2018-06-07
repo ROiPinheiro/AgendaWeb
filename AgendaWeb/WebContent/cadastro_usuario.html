@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="ISO-8859-1">
+		<title>Novo Usuário</title>
+		<link rel="stylesheet" href="css/bootstrap.css"></link>
+	</head>
+	<body>
+		<header>
+			<div class="container">
+				<div class="row">
+					<div class="col-md-4"></div>
+					
+					<div class="col-md-4" style="text-align: center;">
+						<h1>MiContatos</h1>
+					</div>
+					<div class="col-md-4"></div>
+				</div>
+			</div>
+		</header>
+		
+		<div class="container">
+			<div class="row">
+				
+				<div class="col-md-2"></div>
+				
+				<div class="col-md-8">
+					<div class="panel panel-success" style="text-align: center;">
+					
+						<div class="panel-heading">
+								<h2>Vamos efetuar o seu cadastro</h2>
+						</div>
+						
+						<div class="panel-body" style="text-align: left;">
+						
+							<!-- Formulario -->
+							<form method="post" action="GravarUsuario">
+								<fieldset>
+									<legend style="text-align: center;">Dados Gerais</legend>
+									
+									<!-- Linha 1 -->
+									<div class="form-row">
+										<div class="col-md-6 form-group">
+											<label for="txtNome">Nome:</label>
+											<input type="text" name="txtNome" class="form-control">
+										</div>
+	
+										<div class="col-md-3 form-group">
+											<label for="txtCidade">Cidade:</label>
+											<input type="text" name="txtCidade" class="form-control">
+										</div>
+	
+										<div class="col-md-3 form-group">
+											<label for="txtDtNasc">Dt. Nasc.:</label>
+											<input type="date" name="txtDtNasc" class="form-control">
+										</div>
+									</div>
+								</fieldset>
+								
+								<!-- Linha 2 -->
+								<fieldset>
+								
+									<legend style="text-align: center;">Dados para autenticação</legend>
+									<div class="form-row">								
+										<div class="col-md-6 form-group">
+											<label for="txtEmail">E-mail:</label>
+											<input type="email" name="txtEmail" class="form-control">
+										</div>
+										
+										<div class="col-md-3 form-group">
+											<label for="txtSenha">Senha:</label>
+											<input type="password" name="txtSenha" class="form-control">
+										</div>
+											
+										<div class="col-md-3 form-group">
+											<label for="txtConfSenha">Conf. Senha:</label>
+											<input type="password" name="txtConfSenha" class="form-control">
+										</div>
+									</div>
+								</fieldset>
+								<hr>
+									<div class="form-row">
+										<div class="col-md-5"></div>
+										<div class="col-md-7">
+											<input type="submit" value="Criar usuário" class="btn btn-success">
+											<input type="reset" value="Limpar formulário" class="btn btn-warning">
+											<a href="login.html" class="btn btn-danger">Cancelar</a>
+										</div>
+									</div>
+								
+							</form>
+							
+						</div>
+					</div>
+				</div>
+				
+				<div class="col-md-2"></div>
+			</div>			
+		</div>
+		
+		
+	</body>
+</html>
