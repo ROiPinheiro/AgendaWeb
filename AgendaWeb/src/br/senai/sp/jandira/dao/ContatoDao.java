@@ -14,11 +14,11 @@ public class ContatoDao {
 	private ResultSet rs;
 	private Contato contato;
 	
-	public ArrayList<Contato> getContatos(int id){
+	public ArrayList<Contato> getContatos(int idUsuario){
 	
 		ArrayList<Contato> contatos = new ArrayList<>();
 		
-		String sql = "SELECT * FROM contatos WHERE idUsuario = ?";
+		String sql = "SELECT * FROM contatos WHERE idUsuario = ? ORDER BY nome ASC";
 		
 		stm = null;
 		rs = null;
@@ -26,7 +26,7 @@ public class ContatoDao {
 		try {
 			
 			stm = Conexao.getConexao().prepareStatement(sql);
-			stm.setInt(1, id);
+			stm.setInt(1, idUsuario);
 			rs = stm.executeQuery();
 			
 			while(rs.next()) {
@@ -44,8 +44,11 @@ public class ContatoDao {
 				contato.setBairro(rs.getString("estado"));
 				contato.setCep(rs.getString("cep"));
 				contato.setTelefone(rs.getString("telefone"));
-				contato.setCelular(rs.getString("Celular"));
+				contato.setCelular(rs.getString("celular"));
 				contato.setSexo(rs.getString("sexo"));
+				contato.setIdUsuario(rs.getInt("idUsuario"));
+				
+				contatos.add(contato);
 
 			}
 			

@@ -1,15 +1,24 @@
+<%@page import="br.senai.sp.jandira.model.Contato"%>
+<%@page import="br.senai.sp.jandira.dao.ContatoDao"%>
+<%@page import="java.util.ArrayList"%>
 <%@page import="java.text.SimpleDateFormat"%>
 <%@page import="br.senai.sp.jandira.model.Usuario"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
 
 <%
 	SimpleDateFormat df = new SimpleDateFormat("dd/MM/yyyy");
+
+	ArrayList<Contato> listaContatos = new ArrayList();
+
+	
 	Usuario user = new Usuario();
 	user = (Usuario) session.getAttribute("usuario"); 
 		
 	if(user == null){
 		response.sendRedirect("login.html");
 	} else {
+		ContatoDao cDao = new ContatoDao();
+		listaContatos = cDao.getContatos(user.getId());
 		
 %>
 
@@ -50,7 +59,7 @@
 							  	<p><strong>Cidade: </strong> <%= user.getCidade() %>
 							  	<p><strong>Dt. Nasc.: </strong> <%= user.getDtNasc() %> 
 							  	
-							  	<p> <a href="#">Logout</a> </p>
+							  	<p> <a href="sair.jsp">Logout</a> </p>
 							  </div>
 							</div>
 							
@@ -67,7 +76,7 @@
 							  <div class="panel-body">
 							  	<ul class="nav">
 							  		<li class="nav-item"><a href="index.jsp">Home</a></li>
-							  		<li class="nav-item"><a href="#">Cadastrar Contato</a></li>
+							  		<li class="nav-item"><a href="cadastrar_contato.jsp">Cadastrar Contato</a></li>
 							  	</ul>
 							  </div>
 							</div>
@@ -99,14 +108,24 @@
 							  			</tr>
 							  		
 							  		</thead>
-							  		
-										<tr>
-											<td>a</td>
-											<td>a</td>
-											<td>a</td>
-											<td>a</td>
-											<td>a</td>
-										</tr>
+										
+										<% for (Contato contato : listaContatos){ // cada linha do lista, criar um contato  %>
+											<tr>
+												<td><%= contato.getId() %></td>
+												<td><%= contato.getNome() %></td>
+												<td><%= contato.getEmail() %></td>
+												<td>
+													<a href="editar_contato.jsp?id= <%= contato.getId() %> ">
+														<img src="imagens/userEdit32.png" style="height: 24px">
+													</a>
+												</td>
+												<td>
+													<a href="excluir_contato.jsp?id= <%= contato.getId() %> ">
+														<img src="imagens/userDelete32.png" style="height: 24px">
+													</a>
+												</td>								
+											</tr>									
+										<% } %>
 									</table>
 
 							  </div>
