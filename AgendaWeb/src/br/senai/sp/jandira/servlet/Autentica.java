@@ -39,17 +39,15 @@ public class Autentica extends HttpServlet {
 		
 		usuario = uDao.autenticar(email, senha);
 		
-		if (usuario != null) { // se existir um usuario
+		if (usuario == null) { // se existir um usuario
+			rd = request.getRequestDispatcher("login.html");
 			
-			rd = request.getRequestDispatcher("index.jsp"); //enviar para index
-			rd.forward(request, response);
-			
+		}else {			
 			session = request.getSession();
 			session.setAttribute("usuario", usuario);
-		}else {
 			
-			rd = request.getRequestDispatcher("login.html");
-			rd.forward(request, response);
+			rd = request.getRequestDispatcher("index.jsp"); //enviar para index		
 		}
+		rd.forward(request, response);
 	}
 }

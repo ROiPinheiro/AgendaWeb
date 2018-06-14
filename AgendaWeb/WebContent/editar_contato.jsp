@@ -7,18 +7,17 @@
 
 <%
 	SimpleDateFormat df = new SimpleDateFormat("dd/MM/yyyy");
-
-	ArrayList<Contato> listaContatos = new ArrayList();
-
 	
 	Usuario user = new Usuario();
 	user = (Usuario) session.getAttribute("usuario"); 
+	
 		
 	if(user == null){
 		response.sendRedirect("login.html");
 	} else {
+		Contato c = new Contato();
 		ContatoDao cDao = new ContatoDao();
-		listaContatos = cDao.getContatos(user.getId());
+		c = cDao.getContato(Integer.parseInt(request.getParameter("id")));
 		
 %>
 
@@ -27,7 +26,7 @@
 			<head>
 				<link rel="stylesheet" href="css/bootstrap.css"></link>
 				<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-				<title>Resposta da Servlet</title>
+				<title>Editar Contato</title>
 			</head>
 			<body>
 			
@@ -76,7 +75,7 @@
 							  <div class="panel-body">
 							  	<ul class="nav">
 							  		<li class="nav-item"><a href="index.jsp">Home</a></li>
-							  		<li class="nav-item"><a href="#">Cadastrar Contato</a></li>
+							  		<li class="nav-item"><a href="#">Editar Contato</a></li>
 							  	</ul>
 							  </div>
 							</div>
@@ -85,12 +84,12 @@
 						
 						<div class="col-md-9">
 							
-							<div class="panel panel-primary">
+							<div class="panel panel-warning">
 							  <div class="panel-heading">
 							  	
 							  	<strong>
 							  		<img src="imagens/menu24.png" style="height: 24px"> 
-										Cadastrar Contato
+										Editar Contato
 							  	</strong>
 
 							  </div>
@@ -108,21 +107,21 @@
 												<div class="col-md-6 form-group">
 													<input type="hidden" name="txtIdUsuario" value="<%= user.getId() %>"> 
 													<label for="txtNome">Nome:</label>
-													<input type="text" name="txtNome" class="form-control">
+													<input type="text" name="txtNome" class="form-control" value="<%=c.getNome()%>">
 												</div>
 			
 			
 												<div class="col-md-3 form-group">
 													<label for="txtDtNasc">Dt. Nasc.:</label>
-													<input type="date" name="txtDtNasc" class="form-control">
+													<input type="date" name="txtDtNasc" class="form-control" value="<%=c.getDtNasc()%>">
 												</div>
 												
 												<div class="col-md-3 form-group">
 													<label for=cbSexo>Sexo:</label>
 													<select name="cbSexo" class="form-control">
-														<option value="s">Selecione</option>
-														<option value="m">Masculino</option>
-														<option value="f">Feminino</option>
+														<option value="s" <%= c.getSexo().equals("s")? "selected":"" %> >Selecione</option>
+														<option value="m" <%= c.getSexo().equals("m")? "selected":"" %> >Masculino</option>
+														<option value="f" <%= c.getSexo().equals("f")? "selected":"" %> >Feminino</option>
 													</select>
 												</div>
 												
@@ -135,17 +134,17 @@
 																			
 												<div class="col-md-6 form-group">
 													<label for="txtEmail">E-mail:</label>
-													<input type="email" name="txtEmail" class="form-control">
+													<input type="email" name="txtEmail" class="form-control" value="<%=c.getEmail()%>">
 												</div>
 												
 												<div class="col-md-3 form-group">
 													<label for="txtTelefone">Telefone:</label>
-													<input type="text" name="txtTelefone" class="form-control">
+													<input type="text" name="txtTelefone" class="form-control" value="<%=c.getTelefone()%>">
 												</div>
 												
 												<div class="col-md-3 form-group">
 													<label for="txtCelular">Celular:</label>
-													<input type="text" name="txtCelular" class="form-control">
+													<input type="text" name="txtCelular" class="form-control" value="<%=c.getCelular()%>">
 												</div>
 											</div>
 										</fieldset>
@@ -156,12 +155,12 @@
 											
 												<div class="col-md-8 form-group">
 													<label for="txtLogradouro">Logradouro:</label>
-													<input type="text" name="txtLogradouro" class="form-control">
+													<input type="text" name="txtLogradouro" class="form-control" value="<%=c.getLogradouro()%>">
 												</div>
 												
 												<div class="col-md-4 form-group">
 													<label for="txtBairro">Bairro:</label>
-													<input type="text" name="txtBairro" class="form-control">
+													<input type="text" name="txtBairro" class="form-control" value="<%=c.getBairro()%>">
 												</div>
 											
 											</div>
@@ -172,17 +171,17 @@
 											
 												<div class="col-md-4 form-group">
 													<label for="txtCidade">Cidade:</label>
-													<input type="text" name="txtCidade" class="form-control">
+													<input type="text" name="txtCidade" class="form-control" value="<%=c.getCidade()%>">
 												</div>
 												
 												<div class="col-md-4 form-group">
 													<label for="txtEstado">Estado:</label>
-													<input type="text" name="txtEstado" maxlength="2" class="form-control">
+													<input type="text" name="txtEstado" maxlength="2" class="form-control" value="<%=c.getEstado()%>">
 												</div>
 												
 												<div class="col-md-4 form-group">
 													<label for="txtCep">CEP:</label>
-													<input type="text" name="txtCep" class="form-control">
+													<input type="text" name="txtCep" class="form-control" value="<%=c.getCep()%>">
 												</div>
 											
 											</div>

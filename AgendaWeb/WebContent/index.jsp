@@ -9,7 +9,6 @@
 	SimpleDateFormat df = new SimpleDateFormat("dd/MM/yyyy");
 
 	ArrayList<Contato> listaContatos = new ArrayList();
-
 	
 	Usuario user = new Usuario();
 	user = (Usuario) session.getAttribute("usuario"); 
@@ -115,7 +114,7 @@
 												<td><%= contato.getNome() %></td>
 												<td><%= contato.getEmail() %></td>
 												<td>
-													<a href="editar_contato.jsp?id= <%= contato.getId() %> ">
+													<a href="editar_contato.jsp?id=<%= contato.getId()%> ">
 														<img src="imagens/userEdit32.png" style="height: 24px">
 													</a>
 												</td>
