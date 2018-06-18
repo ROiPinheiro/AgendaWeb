@@ -114,12 +114,12 @@
 												<td><%= contato.getNome() %></td>
 												<td><%= contato.getEmail() %></td>
 												<td>
-													<a href="editar_contato.jsp?id=<%= contato.getId()%> ">
+													<a href="atualizar_contato.jsp?id=<%= contato.getId()%> ">
 														<img src="imagens/userEdit32.png" style="height: 24px">
 													</a>
 												</td>
 												<td>
-													<a href="excluir_contato.jsp?id= <%= contato.getId() %> ">
+													<a href="excluir_contato.jsp?id=<%= contato.getId() %> ">
 														<img src="imagens/userDelete32.png" style="height: 24px">
 													</a>
 												</td>								

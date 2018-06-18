@@ -122,4 +122,54 @@ public class ContatoDao {
 		}
 		return status;
 	}
+	
+	public boolean atualizarContato() {
+		boolean status = true;
+		
+		String sql = "UPDATE contatos SET nome = ?, dtNasc = ?, email = ?, logradouro = ?, bairro = ?, cidade = ?, estado = ?, cep = ?, telefone = ?, celular ?, sexo = ? "
+					+ "WHERE id = ?";
+		
+		try {
+			stm = Conexao.getConexao().prepareStatement(sql);
+			
+			stm.setString(1, contato.getNome());
+			stm.setString(2, contato.getDtNasc());
+			stm.setString(3, contato.getEmail());
+			stm.setString(4, contato.getLogradouro());
+			stm.setString(5, contato.getBairro());
+			stm.setString(6, contato.getCidade());
+			stm.setString(7, contato.getEstado());
+			stm.setString(8, contato.getCep());
+			stm.setString(9, contato.getTelefone());
+			stm.setString(10, contato.getCelular());
+			stm.setString(11, contato.getSexo());
+			stm.setInt(12, contato.getId());
+			stm.execute();
+			Conexao.getConexao().close();
+			
+		}catch(Exception e) {
+			status = false;
+			e.printStackTrace();
+		}
+		return status;
+	}
+	
+	public boolean excluirContato() {
+		boolean status = true;
+		
+		String sql = "DELETE FROM contatos WHERE 'id' = ?";
+		
+		try {
+			stm = Conexao.getConexao().prepareStatement(sql);
+			
+			stm.setInt(1, contato.getId());
+			stm.execute();
+			Conexao.getConexao().close();
+			
+		}catch(Exception e) {
+			status = false;
+			e.printStackTrace();
+		}
+		return status;
+	}
 }

@@ -12,21 +12,22 @@ import javax.servlet.http.HttpServletResponse;
 import br.senai.sp.jandira.dao.ContatoDao;
 import br.senai.sp.jandira.model.Contato;
 
-@WebServlet("/GravarContato")
-public class GravarContato extends HttpServlet {
+@WebServlet("/AtualizarContato")
+public class AtualizarContato extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
-    public GravarContato() {
+    public AtualizarContato() {
         super();
 
     }
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
+	
 		Contato contato = new Contato();
 		ContatoDao cDao = new ContatoDao();
 		RequestDispatcher rd;
 		
+		contato.setId(Integer.parseInt(request.getParameter("txtIdContato")));
 		contato.setNome(request.getParameter("txtNome"));
 		contato.setDtNasc(request.getParameter("txtDtNasc"));
 		contato.setEmail(request.getParameter("txtEmail"));
@@ -38,15 +39,14 @@ public class GravarContato extends HttpServlet {
 		contato.setTelefone(request.getParameter("txtTelefone"));
 		contato.setCelular(request.getParameter("txtCelular"));
 		contato.setSexo(request.getParameter("cbSexo"));
-		contato.setIdUsuario(Integer.parseInt(request.getParameter("txtIdUsuario")));
 		
 		cDao.setContato(contato);
 		
-		if(cDao.gravarContato()) {
+		if(cDao.atualizarContato()) {
 			rd = request.getRequestDispatcher("index.jsp");
 		}
 		else {
-			rd = request.getRequestDispatcher("cadastrar_contato.jsp");
+			rd = request.getRequestDispatcher("atualizar_contato.jsp");
 		}
 		
 		rd.forward(request, response);

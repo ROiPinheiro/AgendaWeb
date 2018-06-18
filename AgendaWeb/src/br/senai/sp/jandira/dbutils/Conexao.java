@@ -14,7 +14,7 @@ public class Conexao {
 			
 			Class.forName("com.mysql.jdbc.Driver");
 			
-			String dbUrl = "jdbc:mysql://10.107.134.3:3306/agenda?useSSL=false";
+			String dbUrl = "jdbc:mysql://10.107.140.2:3306/agenda?useSSL=false";
 			
 			con = DriverManager.getConnection(dbUrl, "root", "bcd127");
 						

@@ -96,7 +96,7 @@
 		
 							  <div class="panel-body">
 							  	
-							  	<form method="post" action="GravarContato">
+							  	<form method="post" action="AtualizarContato">
 							  		
 							  		<!-- Linha 1 -->
 										<fieldset>
@@ -105,7 +105,8 @@
 											<div class="form-row">
 											
 												<div class="col-md-6 form-group">
-													<input type="hidden" name="txtIdUsuario" value="<%= user.getId() %>"> 
+													<input type="hidden" name="txtIdUsuario" value="<%= user.getId() %>">
+													<input type="hidden" name="txtIdContato" value="<%= c.getId() %>"> 
 													<label for="txtNome">Nome:</label>
 													<input type="text" name="txtNome" class="form-control" value="<%=c.getNome()%>">
 												</div>
@@ -190,7 +191,7 @@
 										<div class="form-row">
 											<div class="col-md-5"></div>
 											<div class="col-md-7">
-												<input type="submit" value="Criar usuário" class="btn btn-success">
+												<input type="submit" value="Atualizar usuário" class="btn btn-success">
 												<input type="reset" value="Limpar formulário" class="btn btn-warning">
 												<a href="index.jsp" class="btn btn-danger">Cancelar</a>
 											</div>
